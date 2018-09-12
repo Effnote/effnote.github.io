@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mar's sliders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <ul>
+        <li>
+            <label>Energy:</label>
+            <input type="range">
+            <div></div>
+        </li>
+        <li>
+            <label>Fullness:</label>
+            <input id="fullness" type="range" value="30">
+            <div></div>
+        </li>
+        <li>
+            <label>Fatness:</label>
+            <input type="range">
+            <div></div>
+        </li>
+        <li>
+            <label>Sickness:</label>
+            <input type="range" value="10">
+            <div></div>
+        </li>
+        <li>
+            <label>Catnipped:</label>
+            <input type="range" value="0">
+            <div></div>
+        </li>
+        <li>
+            <label>Fleas:</label>
+            <input type="range" value="5">
+            <div></div>
+        </li>
+        <li>
+            <label>Horniness:</label>
+            <input type="range">
+            <div></div>
+        </li>
+        <li>
+            <label>Neglect:</label>
+            <input type="range" value="20">
+            <div></div>
+        </li>
+    </ul>
+    <script>
+        for (let input of document.getElementsByTagName("input")) {
+            input.nextElementSibling.innerHTML = input.value;
+            input.addEventListener("input", () => input.nextElementSibling.innerHTML = input.value);
+        }
+        setInterval(() => {
+            let fullness = document.getElementById("fullness");
+            fullness.value -= 1;
+            fullness.nextElementSibling.innerHTML = fullness.value;
+        }, 5000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+ul {
+    list-style: none;
+    padding: 4px;
+    border: solid gray 3px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    background: rgb(198, 208, 250);
+    max-width: 500px;
+}
+
+li {
+    display: flex;
+}
+
+input[type=range] {
+    flex-grow: 1;
+    color: red;
+}
+
+input[type=range]+div {
+    width: 2em;
+    border: 1px rgba(0,0,0,0.1) solid;
+}
+
+label {
+    display: block;
+    width: 6em;
+    text-align: right;
+}
