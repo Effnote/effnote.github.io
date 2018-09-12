@@ -11,7 +11,7 @@
     <ul>
         <li>
             <label>Energy:</label>
-            <input type="range">
+            <input id="energy" type="range">
             <div></div>
         </li>
         <li>
@@ -21,44 +21,53 @@
         </li>
         <li>
             <label>Fatness:</label>
-            <input type="range">
+            <input id="fatness" type="range">
             <div></div>
         </li>
         <li>
             <label>Sickness:</label>
-            <input type="range" value="10">
+            <input id="sickness" type="range" value="10">
             <div></div>
         </li>
         <li>
             <label>Catnipped:</label>
-            <input type="range" value="0">
+            <input id="catnipped" type="range" value="0">
             <div></div>
         </li>
         <li>
             <label>Fleas:</label>
-            <input type="range" value="5">
+            <input id="fleas" type="range" value="5">
             <div></div>
         </li>
         <li>
             <label>Horniness:</label>
-            <input type="range">
+            <input id="horniness" type="range">
             <div></div>
         </li>
         <li>
             <label>Neglect:</label>
-            <input type="range" value="20">
+            <input id="neglect" type="range" value="20">
             <div></div>
         </li>
     </ul>
     <script>
         for (let input of document.getElementsByTagName("input")) {
+            if(window.localStorage[input.id]) {
+                input.value = window.localStorage[input.id];
+            } else {
+                window.localStorage[input.id] = input.value;
+            }
             input.nextElementSibling.innerHTML = input.value;
-            input.addEventListener("input", () => input.nextElementSibling.innerHTML = input.value);
+            input.addEventListener("input", () => {
+                input.nextElementSibling.innerHTML = input.value;
+                window.localStorage[input.id] = input.value;
+            });
         }
         setInterval(() => {
             let fullness = document.getElementById("fullness");
             fullness.value -= 1;
             fullness.nextElementSibling.innerHTML = fullness.value;
+            window.localStorage["fullness"] = fullness.value;
         }, 5000);
     </script>
 </body>
