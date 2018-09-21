@@ -16,7 +16,6 @@ li {
 
 input[type=range] {
     flex-grow: 1;
-    color: red;
 }
 
 input[type=range]+div {

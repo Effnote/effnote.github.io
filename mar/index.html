@@ -10,57 +10,86 @@
 <body>
     <ul>
         <li>
-            <label>Energy:</label>
+            <label for="energy">Energy:</label>
             <input id="energy" type="range">
             <div></div>
         </li>
         <li>
-            <label>Fullness:</label>
+            <label for="fullness">Fullness:</label>
             <input id="fullness" type="range" value="30">
             <div></div>
         </li>
         <li>
-            <label>Fatness:</label>
+            <label for="fatness">Fatness:</label>
             <input id="fatness" type="range">
             <div></div>
         </li>
         <li>
-            <label>Sickness:</label>
+            <label for="sickness">Sickness:</label>
             <input id="sickness" type="range" value="10">
             <div></div>
         </li>
         <li>
-            <label>Catnipped:</label>
+            <label for="catnipped">Catnipped:</label>
             <input id="catnipped" type="range" value="0">
             <div></div>
         </li>
         <li>
-            <label>Fleas:</label>
+            <label for="fleas">Fleas:</label>
             <input id="fleas" type="range" value="5">
             <div></div>
         </li>
         <li>
-            <label>Horniness:</label>
+            <label for="horniness">Horniness:</label>
             <input id="horniness" type="range">
             <div></div>
         </li>
         <li>
-            <label>Neglect:</label>
+            <label for="neglect">Neglect:</label>
             <input id="neglect" type="range" value="20">
             <div></div>
         </li>
+        <li>
+            <label for="breastsize">Breast size:</label>
+            <input id="breastsize" type="range" value="0">
+            <div></div>
+        </li>
+        <li>
+            <label for="pussy">Pussy:</label>
+            <input id="pussy" type="checkbox" checked>
+            <label for="cock">Cock:</label>
+            <input id="cock" type="checkbox">
+        </li>
     </ul>
     <script>
-        for (let input of document.getElementsByTagName("input")) {
-            if(window.localStorage[input.id]) {
-                input.value = window.localStorage[input.id];
-            } else {
+        function storeInput(input) {
+            if (input.type == "range") {
                 window.localStorage[input.id] = input.value;
+            } else if (input.type == "checkbox") {
+                window.localStorage[input.id] = input.checked;
             }
-            input.nextElementSibling.innerHTML = input.value;
-            input.addEventListener("input", () => {
+        }
+        function setInput(input) {
+            if (input.type == "range") {
+                input.value = window.localStorage[input.id];
+            } else if (input.type == "checkbox") {
+                input.checked = (window.localStorage[input.id] === "true");
+            }
+        }
+        for (let input of document.getElementsByTagName("input")) {
+            if (window.localStorage[input.id]) {
+                setInput(input);
+            } else {
+                storeInput(input);
+            }
+            if (input.type == "range") {
                 input.nextElementSibling.innerHTML = input.value;
-                window.localStorage[input.id] = input.value;
+            }
+            input.addEventListener("input", () => {
+                if (input.type == "range") {
+                    input.nextElementSibling.innerHTML = input.value;
+                }
+                storeInput(input)
             });
         }
         setInterval(() => {
@@ -68,7 +97,7 @@
             fullness.value -= 1;
             fullness.nextElementSibling.innerHTML = fullness.value;
             window.localStorage["fullness"] = fullness.value;
-        }, 5000);
+        }, 2.5*60*1000); // 2.5 minutes
     </script>
 </body>
 
